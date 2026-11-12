@@ -135,8 +135,9 @@ export function paint(color: string, extra: Partial<THREE.MeshStandardMaterialPa
 }
 
 export const PALETTE = {
-  paint: '#1e262e',
-  paintAccent: '#c45c12',
+  paint: '#c51f33',
+  paintAccent: '#1a1f26',
+  paintStripe: '#c5ccd4',
   frame: '#2a3038',
   engine: '#4a5560',
   engineDark: '#2f3640',

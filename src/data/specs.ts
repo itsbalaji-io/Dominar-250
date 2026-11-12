@@ -132,8 +132,8 @@ export const LAYOUT = {
 }
 
 export const LIMITATIONS = [
-  'Moonlight Bajaj 1,239-part catalogue PDFs were not present in this workspace. Part names follow public service practice; they are not a complete OEM dump.',
-  'Official Bajaj OEM part numbers are NOT shown. Any internal schematic codes are workshop IDs only.',
+  'Moonlight Bajaj ColorDoc 71120159 Rev. 10 (2025-01-01): 59 exploded plates, 17 kits, 1,238 fiche rows (site banner 1,239). OEM numbers in the fiche browser are copied from that public catalogue, not invented.',
+  'The 3D workshop still has 171 schematic meshes. Fiche rows are a parts list, not unique CAD. Bolts, washers, colourways and consumables are not separately meshed.',
   '3D meshes are schematic primitives scaled to published wheelbase/tyre/disc figures. They are not scanned CAD or factory-accurate surfaces.',
   'Internal engine parts (cams, piston, gearbox) are educational cutaway stand-ins, not measured internals.',
   'Fastener torque values in training copy are workshop-typical, not copied from a verified Dominar 250 service manual page.',

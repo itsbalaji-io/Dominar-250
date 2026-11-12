@@ -69,7 +69,7 @@ export const MILESTONES: Milestone[] = [
     id: 'm9',
     layer: 9,
     title: 'Integration and honest catalogue',
-    status: 'done',
-    notes: 'No invented OEM numbers. 1,239-part fiche was unavailable; modelled set is the working inventory.',
+    status: 'in-progress',
+    notes: 'Fiche browser: 59 plates / 1,238 published rows / 17 kits from Moonlight ColorDoc 71120159. 3D inventory remains 171 schematic meshes.',
   },
 ]

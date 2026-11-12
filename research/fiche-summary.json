@@ -1,0 +1,395 @@
+{
+  "meta": {
+    "colorDoc": "71120159",
+    "rev": "REV. 10",
+    "date": "2025-01-01",
+    "lineItems": 1238,
+    "uniquePartNos": 1137,
+    "plates": 59,
+    "kits": 17
+  },
+  "plates": [
+    {
+      "plateNo": "1",
+      "title": "Cover Cylinder Head",
+      "count": 5
+    },
+    {
+      "plateNo": "2",
+      "title": "Cylinder Head",
+      "count": 21
+    },
+    {
+      "plateNo": "3",
+      "title": "SAI System - For Single Spark version - JF36",
+      "count": 20
+    },
+    {
+      "plateNo": "4",
+      "title": "Rocker arm & Camshaft",
+      "count": 66
+    },
+    {
+      "plateNo": "5",
+      "title": "Chain Guide & Tensioner Assembly",
+      "count": 8
+    },
+    {
+      "plateNo": "6",
+      "title": "Cylinder & Piston",
+      "count": 5
+    },
+    {
+      "plateNo": "7",
+      "title": "Crankshaft Assembly",
+      "count": 15
+    },
+    {
+      "plateNo": "8",
+      "title": "Transmission",
+      "count": 27
+    },
+    {
+      "plateNo": "9",
+      "title": "Change Drum / Shift Fork",
+      "count": 12
+    },
+    {
+      "plateNo": "10",
+      "title": "Gear Change Mechanism",
+      "count": 15
+    },
+    {
+      "plateNo": "11",
+      "title": "Engine Assembly / Crankcase RH",
+      "count": 23
+    },
+    {
+      "plateNo": "12",
+      "title": "Crankcase LH",
+      "count": 33
+    },
+    {
+      "plateNo": "13",
+      "title": "Balancer Idler Gear & Water Pump",
+      "count": 17
+    },
+    {
+      "plateNo": "14",
+      "title": "Oil Pump & Evacuation Pump",
+      "count": 9
+    },
+    {
+      "plateNo": "15",
+      "title": "Cooling System",
+      "count": 40
+    },
+    {
+      "plateNo": "16",
+      "title": "Cover Clutch",
+      "count": 19
+    },
+    {
+      "plateNo": "17",
+      "title": "Cover Magneto",
+      "count": 13
+    },
+    {
+      "plateNo": "18",
+      "title": "Clutch Assembly",
+      "count": 19
+    },
+    {
+      "plateNo": "19",
+      "title": "Throttle Body & Sensors",
+      "count": 11
+    },
+    {
+      "plateNo": "20",
+      "title": "Air Cleaner Assembly",
+      "count": 17
+    },
+    {
+      "plateNo": "21",
+      "title": "Silencer Assembly",
+      "count": 32
+    },
+    {
+      "plateNo": "22",
+      "title": "Belly Pan",
+      "count": 19
+    },
+    {
+      "plateNo": "23",
+      "title": "Starter Assembly",
+      "count": 7
+    },
+    {
+      "plateNo": "24",
+      "title": "Magneto, Regulator & ECU",
+      "count": 25
+    },
+    {
+      "plateNo": "25",
+      "title": "H.T. Coils",
+      "count": 13
+    },
+    {
+      "plateNo": "26",
+      "title": "H.T. Coils - Applicable for single spark version 00JF36ZZ",
+      "count": 8
+    },
+    {
+      "plateNo": "27",
+      "title": "Seat Assembly & Seat Lock",
+      "count": 22
+    },
+    {
+      "plateNo": "28",
+      "title": "Engine Mountings",
+      "count": 18
+    },
+    {
+      "plateNo": "29",
+      "title": "Frame and Frame Fittings",
+      "count": 19
+    },
+    {
+      "plateNo": "30",
+      "title": "Swing Arm & Rear Shock Absorber",
+      "count": 17
+    },
+    {
+      "plateNo": "31",
+      "title": "Pillion Foot Rest",
+      "count": 31
+    },
+    {
+      "plateNo": "32",
+      "title": "Front Fender",
+      "count": 6
+    },
+    {
+      "plateNo": "33",
+      "title": "Side Stand Assembly",
+      "count": 19
+    },
+    {
+      "plateNo": "34",
+      "title": "Tubeless Tyre & Rim",
+      "count": 7
+    },
+    {
+      "plateNo": "35",
+      "title": "Front Hub",
+      "count": 13
+    },
+    {
+      "plateNo": "36",
+      "title": "Master Cylinder - Front",
+      "count": 17
+    },
+    {
+      "plateNo": "37",
+      "title": "Caliper Assembly - Front",
+      "count": 9
+    },
+    {
+      "plateNo": "38",
+      "title": "Anti Brake Lock System",
+      "count": 17
+    },
+    {
+      "plateNo": "39",
+      "title": "Rear Disc Brake Assembly",
+      "count": 19
+    },
+    {
+      "plateNo": "40",
+      "title": "Rear Hub",
+      "count": 24
+    },
+    {
+      "plateNo": "41",
+      "title": "Rear Brake Pedal",
+      "count": 13
+    },
+    {
+      "plateNo": "42",
+      "title": "Handle Bar Assembly",
+      "count": 36
+    },
+    {
+      "plateNo": "43",
+      "title": "Front Fork",
+      "count": 32
+    },
+    {
+      "plateNo": "44",
+      "title": "Petrol Tank, Cap Tank & Gauge Fuel",
+      "count": 31
+    },
+    {
+      "plateNo": "45",
+      "title": "EVAP Mechanism",
+      "count": 23
+    },
+    {
+      "plateNo": "45A",
+      "title": "EVAP Mechanism - From Jan 25",
+      "count": 18
+    },
+    {
+      "plateNo": "46",
+      "title": "Fitting - Petrol Tank Cover",
+      "count": 29
+    },
+    {
+      "plateNo": "47",
+      "title": "Fitting - Side Covers, Seat Cowls & Under Tray Front",
+      "count": 12
+    },
+    {
+      "plateNo": "48",
+      "title": "Speedometer Assembly",
+      "count": 19
+    },
+    {
+      "plateNo": "49",
+      "title": "Control Cables & Chain Case",
+      "count": 8
+    },
+    {
+      "plateNo": "50",
+      "title": "Head Lamp Assembly & Front Number Plate",
+      "count": 25
+    },
+    {
+      "plateNo": "51",
+      "title": "Indicator Light Assembly",
+      "count": 8
+    },
+    {
+      "plateNo": "52",
+      "title": "Tail Lamp Assembly & Rear Number Plate",
+      "count": 22
+    },
+    {
+      "plateNo": "53",
+      "title": "Electrical Equipments",
+      "count": 41
+    },
+    {
+      "plateNo": "54",
+      "title": "Tool Kit",
+      "count": 2
+    },
+    {
+      "plateNo": "55",
+      "title": "Accessories - Mirror, Leg Guards, Grab Handles & Saree Guard",
+      "count": 24
+    },
+    {
+      "plateNo": "56",
+      "title": "Painted Parts and Decals",
+      "count": 48
+    },
+    {
+      "plateNo": "57",
+      "title": "Painted Parts and Decals - From Aug. 2021",
+      "count": 83
+    },
+    {
+      "plateNo": "58",
+      "title": "Consumable Parts",
+      "count": 27
+    }
+  ],
+  "kits": [
+    {
+      "kitPartNo": "JF511058",
+      "description": "Head Cylinder - Holder Camshaft JF511059",
+      "count": 6
+    },
+    {
+      "kitPartNo": "36JF0211",
+      "description": "Assembly crankcase LH",
+      "count": 12
+    },
+    {
+      "kitPartNo": "36JF0052",
+      "description": "Assembly crankcase RH",
+      "count": 7
+    },
+    {
+      "kitPartNo": "36JF0053",
+      "description": "Assly clutch cover With nozel",
+      "count": 3
+    },
+    {
+      "kitPartNo": "36JF0054",
+      "description": "Primary drive & driven",
+      "count": 1
+    },
+    {
+      "kitPartNo": "36JF0197",
+      "description": "Kit cam chain guide",
+      "count": 2
+    },
+    {
+      "kitPartNo": "36JF0198",
+      "description": "Kit valve repair",
+      "count": 5
+    },
+    {
+      "kitPartNo": "36JF0209",
+      "description": "Chain sprocket kit",
+      "count": 3
+    },
+    {
+      "kitPartNo": "36JF0208",
+      "description": "Block Piston assly",
+      "count": 2
+    },
+    {
+      "kitPartNo": "36JF0061",
+      "description": "Steering cone",
+      "count": 4
+    },
+    {
+      "kitPartNo": "36JF0179",
+      "description": "Kit hose cyl master fr unit ABS",
+      "count": 1
+    },
+    {
+      "kitPartNo": "36JF0180",
+      "description": "Kit hose unit ABS caliper front",
+      "count": 1
+    },
+    {
+      "kitPartNo": "36JF0181",
+      "description": "Kit hose cyl master rr unit ABS",
+      "count": 1
+    },
+    {
+      "kitPartNo": "36JF0182",
+      "description": "Kit hose unit ABS caliper rear",
+      "count": 1
+    },
+    {
+      "kitPartNo": "36DT0004",
+      "description": "Tie band - wiring harness",
+      "count": 2
+    },
+    {
+      "kitPartNo": "JF232616",
+      "description": "Set Lock",
+      "count": 5
+    },
+    {
+      "kitPartNo": "36JP0025",
+      "description": "Kit Piston Ring D 250",
+      "count": 3
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { PARTS, PARTS_BY_ID, KITS } from './catalogue'
 import { ASSEMBLY_STEPS, DISASSEMBLY_STEPS } from './training'
+import { FICHE_KITS, FICHE_META, FICHE_PLATES, MESH_TO_PLATES, PLATES_BY_NO } from './fiche'
 
 export interface IntegrityIssue {
   level: 'error' | 'warn'
@@ -35,6 +36,23 @@ export function runIntegrity(): IntegrityIssue[] {
   }
   for (const id of trainIds) {
     if (!PARTS_BY_ID[id]) issues.push({ level: 'warn', message: `Training references unmodelled id ${id}` })
+  }
+
+  if (FICHE_PLATES.length !== FICHE_META.claimedPlates) {
+    issues.push({ level: 'warn', message: `Fiche plates ${FICHE_PLATES.length} vs claimed ${FICHE_META.claimedPlates}` })
+  }
+  if (FICHE_KITS.length !== FICHE_META.claimedKits) {
+    issues.push({ level: 'warn', message: `Fiche kits ${FICHE_KITS.length} vs claimed ${FICHE_META.claimedKits}` })
+  }
+  const ficheLines = FICHE_PLATES.reduce((n, p) => n + p.parts.length, 0)
+  if (ficheLines < 1200) {
+    issues.push({ level: 'warn', message: `Fiche line items ${ficheLines} (site claims ${FICHE_META.claimedParts})` })
+  }
+  for (const [id, plates] of Object.entries(MESH_TO_PLATES)) {
+    if (!PARTS_BY_ID[id]) issues.push({ level: 'warn', message: `MESH_TO_PLATES unknown mesh ${id}` })
+    for (const n of plates) {
+      if (!PLATES_BY_NO[n]) issues.push({ level: 'warn', message: `MESH_TO_PLATES ${id} missing plate ${n}` })
+    }
   }
   return issues
 }

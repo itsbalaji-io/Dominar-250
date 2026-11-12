@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CATEGORIES, KITS, PARTS, PARTS_BY_ID, type PartCategory } from '../data/catalogue'
+import { FICHE_KITS, FICHE_META, FICHE_PLATES, MESH_TO_PLATES, PLATES_BY_NO } from '../data/fiche'
 import { INTEGRITY } from '../data/integrity'
 import { LIMITATIONS, PUBLIC_SPECS } from '../data/specs'
 import { MILESTONES } from '../data/progress'
@@ -8,6 +9,8 @@ import { CAMERA_VIEWS, useBike, type CameraView } from '../store'
 
 export function Hud() {
   const [query, setQuery] = useState('')
+  const [plateNo, setPlateNo] = useState('1')
+  const [ficheQuery, setFicheQuery] = useState('')
   const selectedId = useBike((s) => s.selectedId)
   const explode = useBike((s) => s.explode)
   const mode = useBike((s) => s.mode)
@@ -50,6 +53,35 @@ export function Hud() {
   const redo = useBike((s) => s.redo)
 
   const part = selectedId ? PARTS_BY_ID[selectedId] : undefined
+  const mappedPlates = selectedId ? MESH_TO_PLATES[selectedId] ?? [] : []
+  useEffect(() => {
+    if (mappedPlates[0]) setPlateNo(mappedPlates[0])
+  }, [selectedId])
+  const plate = PLATES_BY_NO[plateNo] ?? FICHE_PLATES[0]
+  const ficheHits = useMemo(() => {
+    const q = ficheQuery.trim().toLowerCase()
+    if (!q) return []
+    const out: { plateNo: string; title: string; callout: string; partNoDisplay: string; description: string }[] = []
+    for (const p of FICHE_PLATES) {
+      for (const row of p.parts) {
+        if (
+          row.partNo.toLowerCase().includes(q) ||
+          row.partNoDisplay.toLowerCase().includes(q) ||
+          row.description.toLowerCase().includes(q)
+        ) {
+          out.push({
+            plateNo: p.plateNo,
+            title: p.title,
+            callout: row.callout,
+            partNoDisplay: row.partNoDisplay,
+            description: row.description,
+          })
+          if (out.length >= 40) return out
+        }
+      }
+    }
+    return out
+  }, [ficheQuery])
   const steps = trainingMode === 'disassembly' ? DISASSEMBLY_STEPS : ASSEMBLY_STEPS
   const step = steps[trainingIndex]
   const removedCount = useMemo(() => Object.values(removed).filter(Boolean).length, [removed])
@@ -75,7 +107,7 @@ export function Hud() {
           <span className="mark">BAJAJ</span>
           <div>
             <h1>DOMINAR 250</h1>
-            <p>Schematic workshop simulator — published specs, no invented OEM numbers</p>
+            <p>Schematic 3D + Moonlight fiche ColorDoc 71120159 Rev. 10</p>
           </div>
         </div>
         <div className="modes">
@@ -93,10 +125,11 @@ export function Hud() {
           </button>
         </div>
         <div className="stats">
-          <span>{PARTS.length} parts</span>
-          <span>{KITS.length} kits</span>
+          <span>{PARTS.length} meshes</span>
+          <span>{FICHE_META.lineItems} fiche rows</span>
+          <span>{FICHE_PLATES.length} plates</span>
+          <span>{FICHE_KITS.length} kits</span>
           <span>{installedCount} fitted</span>
-          <span>{progressPct}%</span>
         </div>
       </header>
 
@@ -180,8 +213,10 @@ export function Hud() {
             <div className="card">
               <h3>{part.name}</h3>
               <dl>
+                <dt>Workshop ID</dt>
+                <dd>{part.id}</dd>
                 <dt>OEM PN</dt>
-                <dd>{part.oem}</dd>
+                <dd>{mappedPlates.length ? 'See fiche rows below' : part.oem}</dd>
                 <dt>Group</dt>
                 <dd>{part.category}</dd>
                 <dt>Install order</dt>
@@ -206,6 +241,19 @@ export function Hud() {
                 <p className="muted">Depends on: {part.dependsOn.map((id) => PARTS_BY_ID[id]?.name ?? id).join(', ')}</p>
               )}
               {part.notes && <p className="caution">{part.notes}</p>}
+              {mappedPlates.length > 0 && (
+                <div className="fiche-map">
+                  {mappedPlates.map((n) => {
+                    const pl = PLATES_BY_NO[n]
+                    return (
+                      <button key={n} type="button" onClick={() => setPlateNo(n)}>
+                        Plate {n} {pl?.title}
+                        <small>{pl?.parts.length} rows</small>
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
               <button onClick={() => toggleRemoved(part.id)}>
                 {removed[part.id] ? 'Install part' : 'Remove part'}
               </button>
@@ -263,7 +311,76 @@ export function Hud() {
         </section>
 
         <section>
-          <h2>Service kits</h2>
+          <h2>Moonlight fiche</h2>
+          <p className="muted">
+            {FICHE_META.model} · {FICHE_META.colorDoc} · {FICHE_META.rev} · {FICHE_META.date}. {FICHE_META.lineItems} published
+            rows / {FICHE_META.claimedPlates} plates / {FICHE_META.claimedKits} kits. 3D is {PARTS.length} schematic meshes, not
+            1:1 CAD.
+          </p>
+          <label className="search">
+            <input
+              value={ficheQuery}
+              onChange={(e) => setFicheQuery(e.target.value)}
+              placeholder="Search fiche PN / name"
+            />
+          </label>
+          {ficheHits.length > 0 && (
+            <div className="fiche-hits">
+              {ficheHits.map((h, i) => (
+                <button key={`${h.plateNo}-${h.partNoDisplay}-${i}`} type="button" onClick={() => setPlateNo(h.plateNo)}>
+                  <code>{h.partNoDisplay}</code> {h.description}
+                  <small>
+                    Pl {h.plateNo} #{h.callout}
+                  </small>
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="plate-select">
+            <select value={plateNo} onChange={(e) => setPlateNo(e.target.value)}>
+              {FICHE_PLATES.map((p) => (
+                <option key={p.plateNo} value={p.plateNo}>
+                  Plate {p.plateNo} — {p.title} ({p.parts.length})
+                </option>
+              ))}
+            </select>
+          </div>
+          {plate && (
+            <div className="fiche-plate">
+              <a href={FICHE_META.url} target="_blank" rel="noreferrer">
+                {plate.title}
+              </a>
+              <img src={plate.image} alt={`Plate ${plate.plateNo} ${plate.title}`} />
+              <ol className="fiche-rows">
+                {plate.parts.map((row) => (
+                  <li key={`${row.partNo}-${row.callout}-${row.description}`}>
+                    <b>{row.callout}</b>
+                    <code>{row.partNoDisplay}</code>
+                    <span>{row.description}</span>
+                    <i>x{row.qty}</i>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+        </section>
+
+        <section>
+          <h2>Published kits (17)</h2>
+          <div className="kits">
+            {FICHE_KITS.map((k) => (
+              <button key={k.kitPartNo} type="button" title={k.contents.map((c) => c.description).join(', ')}>
+                {k.description}
+                <small>
+                  {k.kitPartNo} · {k.contents.length}
+                </small>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Workshop mesh kits</h2>
           <div className="kits">
             {KITS.map((k) => (
               <button key={k.id} onClick={() => k.partIds[0] && setSelected(k.partIds[0])}>

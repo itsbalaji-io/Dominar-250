@@ -18,21 +18,21 @@ function AlloyRim({ radius, width, spokes = 5 }: { radius: number; width: number
     <group>
       <mesh rotation={[0, Math.PI / 2, 0]} castShadow>
         <torusGeometry args={[radius, 0.018, 12, 64]} />
-        <meshStandardMaterial {...paint(C.alloy, { metalness: 0.86, roughness: 0.18 })} />
+        <meshStandardMaterial {...paint('#1c1e22', { metalness: 0.72, roughness: 0.28 })} />
       </mesh>
       <mesh rotation={[0, Math.PI / 2, 0]}>
         <torusGeometry args={[radius - 0.014, 0.01, 8, 48]} />
-        <meshStandardMaterial {...paint('#9aa3ad', { metalness: 0.8, roughness: 0.22 })} />
+        <meshStandardMaterial {...paint('#2a2e34', { metalness: 0.7, roughness: 0.3 })} />
       </mesh>
       <mesh rotation={[0, 0, Math.PI / 2]} castShadow>
         <cylinderGeometry args={[0.055, 0.062, width * 0.72, 32]} />
-        <meshStandardMaterial {...paint(C.alloy, { metalness: 0.84, roughness: 0.18 })} />
+        <meshStandardMaterial {...paint('#1a1c20', { metalness: 0.7, roughness: 0.28 })} />
       </mesh>
       {spokeRot.map((r, i) => (
         <group key={i} rotation={[r, 0, 0]}>
           <mesh position={[0, 0, radius * 0.48]} castShadow>
             <boxGeometry args={[width * 0.22, 0.032, radius * 0.78]} />
-            <meshStandardMaterial {...paint(C.alloy, { metalness: 0.84, roughness: 0.2 })} />
+            <meshStandardMaterial {...paint('#1c1e22', { metalness: 0.7, roughness: 0.3 })} />
           </mesh>
         </group>
       ))}
@@ -70,6 +70,10 @@ function Tyre({ radius, tyreR, width }: { radius: number; tyreR: number; width: 
       <mesh rotation={[0, Math.PI / 2, 0]}>
         <torusGeometry args={[tyreR - 0.006, 0.005, 8, 56]} />
         <meshStandardMaterial {...paint('#111', { roughness: 0.92 })} />
+      </mesh>
+      <mesh rotation={[0, Math.PI / 2, 0]}>
+        <torusGeometry args={[tyreR - 0.018, 0.0032, 8, 56]} />
+        <meshStandardMaterial {...paint(C.paint, { roughness: 0.42, metalness: 0.15 })} />
       </mesh>
       <mesh rotation={[0, Math.PI / 2, 0]} position={[width * 0.38, 0, 0]}>
         <torusGeometry args={[radius + 0.012, 0.006, 8, 40]} />
@@ -209,17 +213,15 @@ export function Dominar() {
           <meshStandardMaterial {...paint('#1a1a1a')} />
         </mesh>
       </Part>
-      <Part id="crash-guard-l" position={[-0.26, 0.34, 0.14]}>
-        <mesh rotation={[1.2, 0.1, 0.2]} castShadow>
-          <torusGeometry args={[0.13, 0.011, 8, 20, Math.PI * 1.1]} />
-          <meshStandardMaterial {...paint(C.frame, { metalness: 0.65 })} />
-        </mesh>
+      <Part id="crash-guard-l" position={[-0.24, 0.32, 0.12]}>
+        <Tube from={[-0.02, 0.12, 0.16]} to={[-0.08, -0.04, 0.18]} r={0.012} color="#1a1a1a" metalness={0.55} />
+        <Tube from={[-0.08, -0.04, 0.18]} to={[-0.06, -0.1, -0.02]} r={0.012} color="#1a1a1a" metalness={0.55} />
+        <Tube from={[-0.06, -0.1, -0.02]} to={[0.02, 0.02, -0.08]} r={0.012} color="#1a1a1a" metalness={0.55} />
       </Part>
-      <Part id="crash-guard-r" position={[0.26, 0.34, 0.14]}>
-        <mesh rotation={[1.2, -0.1, -0.2]} castShadow>
-          <torusGeometry args={[0.13, 0.011, 8, 20, Math.PI * 1.1]} />
-          <meshStandardMaterial {...paint(C.frame, { metalness: 0.65 })} />
-        </mesh>
+      <Part id="crash-guard-r" position={[0.24, 0.32, 0.12]}>
+        <Tube from={[0.02, 0.12, 0.16]} to={[0.08, -0.04, 0.18]} r={0.012} color="#1a1a1a" metalness={0.55} />
+        <Tube from={[0.08, -0.04, 0.18]} to={[0.06, -0.1, -0.02]} r={0.012} color="#1a1a1a" metalness={0.55} />
+        <Tube from={[0.06, -0.1, -0.02]} to={[-0.02, 0.02, -0.08]} r={0.012} color="#1a1a1a" metalness={0.55} />
       </Part>
 
       <Part id="engine-crankcase" position={[0, 0.34, 0.06]}>
@@ -459,24 +461,24 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="radiator" position={[0, 0.5, 0.42]}>
+      <Part id="radiator" position={[0, 0.48, 0.4]}>
         <mesh castShadow>
-          <boxGeometry args={[0.3, 0.24, 0.038]} />
-          <meshStandardMaterial {...paint('#6a7580', { metalness: 0.58, roughness: 0.42 })} />
+          <boxGeometry args={[0.28, 0.22, 0.032]} />
+          <meshStandardMaterial {...paint('#7a848e', { metalness: 0.62, roughness: 0.38 })} />
         </mesh>
-        <mesh position={[0, 0.13, 0]}>
-          <boxGeometry args={[0.28, 0.018, 0.034]} />
-          <meshStandardMaterial {...paint('#3a4048')} />
+        <mesh position={[0, 0.12, 0]}>
+          <boxGeometry args={[0.26, 0.016, 0.03]} />
+          <meshStandardMaterial {...paint('#1a1c20')} />
         </mesh>
-        <mesh position={[0, -0.13, 0]}>
-          <boxGeometry args={[0.28, 0.018, 0.034]} />
-          <meshStandardMaterial {...paint('#3a4048')} />
+        <mesh position={[0, -0.12, 0]}>
+          <boxGeometry args={[0.26, 0.016, 0.03]} />
+          <meshStandardMaterial {...paint('#1a1c20')} />
         </mesh>
       </Part>
-      <Part id="radiator-grill" position={[0, 0.5, 0.442]}>
+      <Part id="radiator-grill" position={[0, 0.48, 0.422]}>
         <mesh>
-          <boxGeometry args={[0.28, 0.2, 0.006]} />
-          <meshStandardMaterial {...paint('#1a1a1a', { metalness: 0.4, roughness: 0.55 })} />
+          <boxGeometry args={[0.26, 0.18, 0.006]} />
+          <meshStandardMaterial {...paint('#111318', { metalness: 0.45, roughness: 0.5 })} />
         </mesh>
       </Part>
       <Part id="radiator-cap" position={[0.1, 0.64, 0.42]}>
@@ -589,26 +591,34 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="tank" position={[0, 0.86, 0.08]}>
-        <mesh scale={[1.12, 0.52, 1.72]} castShadow>
-          <sphereGeometry args={[0.168, 32, 20]} />
+      <Part id="tank" position={[0, 0.88, 0.06]}>
+        <mesh scale={[1.05, 0.42, 1.95]} castShadow>
+          <sphereGeometry args={[0.168, 32, 22]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
-        <mesh position={[0, 0.04, 0.08]} scale={[0.92, 0.28, 1.05]} castShadow>
+        <mesh position={[0, 0.05, 0.04]} scale={[0.78, 0.22, 1.35]} castShadow>
           <sphereGeometry args={[0.15, 24, 16]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
-        <mesh position={[0, -0.04, -0.16]} scale={[0.88, 0.38, 0.95]} castShadow>
+        <mesh position={[0, -0.02, -0.2]} scale={[0.92, 0.32, 0.85]} castShadow>
           <sphereGeometry args={[0.15, 22, 14]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
-        <mesh position={[0, 0.01, 0.02]} scale={[1.05, 0.18, 1.55]}>
-          <sphereGeometry args={[0.15, 22, 12]} />
+        <mesh position={[0, 0.0, 0.22]} scale={[0.62, 0.18, 0.55]}>
+          <sphereGeometry args={[0.13, 16, 12]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        </mesh>
+        <mesh position={[0, 0.012, 0.02]} scale={[1.02, 0.08, 1.7]}>
+          <sphereGeometry args={[0.148, 22, 12]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintStripe)} />
+        </mesh>
+        <mesh position={[-0.09, -0.02, 0.02]} scale={[0.22, 0.28, 1.55]}>
+          <sphereGeometry args={[0.14, 16, 10]} />
           <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
         </mesh>
-        <mesh position={[0, -0.06, 0.18]} scale={[0.7, 0.22, 0.55]}>
-          <sphereGeometry args={[0.12, 16, 10]} />
-          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        <mesh position={[0.09, -0.02, 0.02]} scale={[0.22, 0.28, 1.55]}>
+          <sphereGeometry args={[0.14, 16, 10]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
         </mesh>
       </Part>
       <Part id="fuel-cap" position={[0, 0.98, 0.22]}>
@@ -636,48 +646,64 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="fork-l" position={[-0.112, FRONT_Y + 0.17, FRONT_Z]} rotation={[RAKE * 0.35, 0, 0]}>
+      <Part id="fork-l" position={[-0.112, FRONT_Y + 0.22, FRONT_Z - 0.018]} rotation={[RAKE, 0, 0]}>
         <mesh castShadow>
-          <cylinderGeometry args={[0.028, 0.03, 0.34, 18]} />
-          <meshStandardMaterial {...paint('#141414', { metalness: 0.55, roughness: 0.35 })} />
+          <cylinderGeometry args={[0.032, 0.034, 0.42, 20]} />
+          <meshStandardMaterial {...paint('#111318', { metalness: 0.62, roughness: 0.28 })} />
         </mesh>
-        <mesh position={[0, -0.17, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.016, 0.016, 0.045, 12]} />
+        <mesh position={[0, 0.2, 0]}>
+          <cylinderGeometry args={[0.036, 0.034, 0.04, 16]} />
+          <meshStandardMaterial {...paint('#0c0c0e', { metalness: 0.55 })} />
+        </mesh>
+        <mesh position={[0, -0.2, 0.012]}>
+          <boxGeometry args={[0.05, 0.07, 0.06]} />
+          <meshStandardMaterial {...paint('#141418', { metalness: 0.55 })} />
+        </mesh>
+        <mesh position={[0, -0.22, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.016, 0.016, 0.05, 12]} />
           <meshStandardMaterial {...paint('#1a1a1a', { metalness: 0.5 })} />
         </mesh>
       </Part>
-      <Part id="fork-tube-l" position={[-0.112, FRONT_Y + 0.46, FRONT_Z - 0.05]} rotation={[RAKE * 0.35, 0, 0]}>
+      <Part id="fork-tube-l" position={[-0.112, FRONT_Y + 0.52, FRONT_Z - 0.12]} rotation={[RAKE, 0, 0]}>
         <mesh castShadow>
-          <cylinderGeometry args={[0.0185, 0.0185, 0.48, 16]} />
-          <meshStandardMaterial {...paint(C.gold, { metalness: 0.78, roughness: 0.22 })} />
+          <cylinderGeometry args={[0.019, 0.019, 0.42, 16]} />
+          <meshStandardMaterial {...paint('#c8cdd4', { metalness: 0.88, roughness: 0.16 })} />
         </mesh>
       </Part>
-      <Part id="fork-seal-l" position={[-0.112, FRONT_Y + 0.34, FRONT_Z - 0.02]} rotation={[RAKE * 0.35, 0, 0]}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.022, 0.005, 8, 14]} />
-          <meshStandardMaterial {...paint('#111')} />
+      <Part id="fork-seal-l" position={[-0.112, FRONT_Y + 0.42, FRONT_Z - 0.078]} rotation={[RAKE, 0, 0]}>
+        <mesh>
+          <cylinderGeometry args={[0.034, 0.034, 0.018, 16]} />
+          <meshStandardMaterial {...paint('#1a1a1a')} />
         </mesh>
       </Part>
-      <Part id="fork-r" position={[0.112, FRONT_Y + 0.17, FRONT_Z]} rotation={[RAKE * 0.35, 0, 0]}>
+      <Part id="fork-r" position={[0.112, FRONT_Y + 0.22, FRONT_Z - 0.018]} rotation={[RAKE, 0, 0]}>
         <mesh castShadow>
-          <cylinderGeometry args={[0.028, 0.03, 0.34, 18]} />
-          <meshStandardMaterial {...paint('#141414', { metalness: 0.55, roughness: 0.35 })} />
+          <cylinderGeometry args={[0.032, 0.034, 0.42, 20]} />
+          <meshStandardMaterial {...paint('#111318', { metalness: 0.62, roughness: 0.28 })} />
         </mesh>
-        <mesh position={[0, -0.17, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <cylinderGeometry args={[0.016, 0.016, 0.045, 12]} />
+        <mesh position={[0, 0.2, 0]}>
+          <cylinderGeometry args={[0.036, 0.034, 0.04, 16]} />
+          <meshStandardMaterial {...paint('#0c0c0e', { metalness: 0.55 })} />
+        </mesh>
+        <mesh position={[0, -0.2, 0.012]}>
+          <boxGeometry args={[0.05, 0.07, 0.06]} />
+          <meshStandardMaterial {...paint('#141418', { metalness: 0.55 })} />
+        </mesh>
+        <mesh position={[0, -0.22, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.016, 0.016, 0.05, 12]} />
           <meshStandardMaterial {...paint('#1a1a1a', { metalness: 0.5 })} />
         </mesh>
       </Part>
-      <Part id="fork-tube-r" position={[0.112, FRONT_Y + 0.46, FRONT_Z - 0.05]} rotation={[RAKE * 0.35, 0, 0]}>
+      <Part id="fork-tube-r" position={[0.112, FRONT_Y + 0.52, FRONT_Z - 0.12]} rotation={[RAKE, 0, 0]}>
         <mesh castShadow>
-          <cylinderGeometry args={[0.0185, 0.0185, 0.48, 16]} />
-          <meshStandardMaterial {...paint(C.gold, { metalness: 0.78, roughness: 0.22 })} />
+          <cylinderGeometry args={[0.019, 0.019, 0.42, 16]} />
+          <meshStandardMaterial {...paint('#c8cdd4', { metalness: 0.88, roughness: 0.16 })} />
         </mesh>
       </Part>
-      <Part id="fork-seal-r" position={[0.112, FRONT_Y + 0.34, FRONT_Z - 0.02]} rotation={[RAKE * 0.35, 0, 0]}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <torusGeometry args={[0.022, 0.005, 8, 14]} />
-          <meshStandardMaterial {...paint('#111')} />
+      <Part id="fork-seal-r" position={[0.112, FRONT_Y + 0.42, FRONT_Z - 0.078]} rotation={[RAKE, 0, 0]}>
+        <mesh>
+          <cylinderGeometry args={[0.034, 0.034, 0.018, 16]} />
+          <meshStandardMaterial {...paint('#1a1a1a')} />
         </mesh>
       </Part>
       <Part id="triple-upper" position={[0, 0.9, 0.55]}>
@@ -1053,116 +1079,166 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="side-fairing-l" position={[-0.22, 0.52, 0.14]}>
+      <Part id="side-fairing-l" position={[-0.2, 0.48, 0.16]}>
         <Panel
           path={[
-            [-0.22, 0.18],
-            [0.26, 0.22],
-            [0.3, 0.04],
-            [0.18, -0.16],
-            [-0.16, -0.18],
-            [-0.24, 0.02],
+            [-0.28, 0.22],
+            [0.08, 0.26],
+            [0.32, 0.12],
+            [0.28, -0.08],
+            [0.06, -0.2],
+            [-0.22, -0.16],
+            [-0.3, 0.02],
           ]}
-          depth={0.018}
+          depth={0.022}
           color={C.paint}
-          rotation={[0.12, Math.PI / 2, 0.18]}
+          rotation={[0.08, Math.PI / 2, 0.12]}
         />
         <Panel
           path={[
-            [-0.12, 0.06],
-            [0.2, 0.08],
-            [0.22, 0.0],
-            [-0.1, -0.02],
+            [-0.18, 0.04],
+            [0.18, 0.08],
+            [0.22, -0.02],
+            [-0.14, -0.06],
           ]}
           depth={0.01}
           color={C.paintAccent}
-          rotation={[0.12, Math.PI / 2, 0.18]}
-          position={[-0.01, 0.02, 0]}
+          rotation={[0.08, Math.PI / 2, 0.12]}
+          position={[-0.012, 0.04, 0]}
         />
+        <mesh position={[-0.02, -0.12, 0.02]} rotation={[0.2, 0, 0.1]}>
+          <boxGeometry args={[0.04, 0.06, 0.18]} />
+          <meshStandardMaterial {...paint('#0e1014', { metalness: 0.35, roughness: 0.55 })} />
+        </mesh>
       </Part>
-      <Part id="side-fairing-r" position={[0.22, 0.52, 0.14]}>
+      <Part id="side-fairing-r" position={[0.2, 0.48, 0.16]}>
         <Panel
           path={[
-            [-0.22, 0.18],
-            [0.26, 0.22],
-            [0.3, 0.04],
-            [0.18, -0.16],
-            [-0.16, -0.18],
-            [-0.24, 0.02],
+            [-0.28, 0.22],
+            [0.08, 0.26],
+            [0.32, 0.12],
+            [0.28, -0.08],
+            [0.06, -0.2],
+            [-0.22, -0.16],
+            [-0.3, 0.02],
           ]}
-          depth={0.018}
+          depth={0.022}
           color={C.paint}
-          rotation={[0.12, -Math.PI / 2, -0.18]}
+          rotation={[0.08, -Math.PI / 2, -0.12]}
         />
         <Panel
           path={[
-            [-0.12, 0.06],
-            [0.2, 0.08],
-            [0.22, 0.0],
-            [-0.1, -0.02],
+            [-0.18, 0.04],
+            [0.18, 0.08],
+            [0.22, -0.02],
+            [-0.14, -0.06],
           ]}
           depth={0.01}
           color={C.paintAccent}
-          rotation={[0.12, -Math.PI / 2, -0.18]}
-          position={[0.01, 0.02, 0]}
+          rotation={[0.08, -Math.PI / 2, -0.12]}
+          position={[0.012, 0.04, 0]}
         />
+        <mesh position={[0.02, -0.12, 0.02]} rotation={[0.2, 0, -0.1]}>
+          <boxGeometry args={[0.04, 0.06, 0.18]} />
+          <meshStandardMaterial {...paint('#0e1014', { metalness: 0.35, roughness: 0.55 })} />
+        </mesh>
       </Part>
-      <Part id="tank-shroud-l" position={[-0.17, 0.78, 0.18]}>
+      <Part id="tank-shroud-l" position={[-0.18, 0.76, 0.2]}>
         <Panel
           path={[
-            [-0.14, 0.08],
-            [0.16, 0.1],
-            [0.18, -0.02],
-            [-0.12, -0.06],
-          ]}
-          depth={0.014}
-          color={C.paint}
-          rotation={[0.15, Math.PI / 2, 0.28]}
-        />
-      </Part>
-      <Part id="tank-shroud-r" position={[0.17, 0.78, 0.18]}>
-        <Panel
-          path={[
-            [-0.14, 0.08],
-            [0.16, 0.1],
-            [0.18, -0.02],
-            [-0.12, -0.06],
-          ]}
-          depth={0.014}
-          color={C.paint}
-          rotation={[0.15, -Math.PI / 2, -0.28]}
-        />
-      </Part>
-      <Part id="belly-pan" position={[0, 0.2, 0.14]}>
-        <Panel
-          path={[
-            [-0.18, 0.22],
-            [0.18, 0.22],
-            [0.16, -0.24],
-            [-0.16, -0.24],
+            [-0.16, 0.1],
+            [0.14, 0.14],
+            [0.2, 0.02],
+            [0.08, -0.1],
+            [-0.14, -0.08],
           ]}
           depth={0.016}
           color={C.paint}
-          rotation={[-Math.PI / 2, 0, 0]}
+          rotation={[0.18, Math.PI / 2, 0.32]}
+        />
+        <Panel
+          path={[
+            [-0.08, 0.02],
+            [0.1, 0.04],
+            [0.12, -0.02],
+            [-0.06, -0.04],
+          ]}
+          depth={0.008}
+          color={C.paintStripe}
+          rotation={[0.18, Math.PI / 2, 0.32]}
+          position={[-0.01, 0.02, 0]}
         />
       </Part>
-      <Part id="tail-cowl" position={[0, 0.74, -0.58]}>
-        <mesh scale={[0.95, 0.42, 1.55]} castShadow>
+      <Part id="tank-shroud-r" position={[0.18, 0.76, 0.2]}>
+        <Panel
+          path={[
+            [-0.16, 0.1],
+            [0.14, 0.14],
+            [0.2, 0.02],
+            [0.08, -0.1],
+            [-0.14, -0.08],
+          ]}
+          depth={0.016}
+          color={C.paint}
+          rotation={[0.18, -Math.PI / 2, -0.32]}
+        />
+        <Panel
+          path={[
+            [-0.08, 0.02],
+            [0.1, 0.04],
+            [0.12, -0.02],
+            [-0.06, -0.04],
+          ]}
+          depth={0.008}
+          color={C.paintStripe}
+          rotation={[0.18, -Math.PI / 2, -0.32]}
+          position={[0.01, 0.02, 0]}
+        />
+      </Part>
+      <Part id="belly-pan" position={[0, 0.18, 0.16]}>
+        <Panel
+          path={[
+            [-0.16, 0.28],
+            [0.16, 0.28],
+            [0.14, -0.18],
+            [0.06, -0.3],
+            [-0.06, -0.3],
+            [-0.14, -0.18],
+          ]}
+          depth={0.018}
+          color={C.paintAccent}
+          rotation={[-Math.PI / 2, 0, 0]}
+        />
+        <mesh position={[0, 0.02, 0.12]}>
+          <boxGeometry args={[0.22, 0.012, 0.16]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        </mesh>
+      </Part>
+      <Part id="tail-cowl" position={[0, 0.76, -0.58]}>
+        <mesh scale={[0.88, 0.28, 1.85]} castShadow>
           <sphereGeometry args={[0.15, 24, 16]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
-        <mesh position={[0, -0.02, -0.14]} scale={[0.72, 0.32, 1.05]} castShadow>
+        <mesh position={[0, -0.02, -0.18]} scale={[0.62, 0.22, 1.15]} castShadow>
           <sphereGeometry args={[0.13, 18, 12]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
-        <mesh position={[0, 0.01, -0.02]} scale={[0.88, 0.12, 1.2]}>
+        <mesh position={[0, 0.018, -0.04]} scale={[0.78, 0.08, 1.45]}>
           <sphereGeometry args={[0.13, 16, 10]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintStripe)} />
+        </mesh>
+        <mesh position={[0, -0.04, 0.08]} scale={[0.7, 0.16, 0.55]}>
+          <sphereGeometry args={[0.12, 14, 10]} />
           <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
         </mesh>
       </Part>
-      <Part id="front-fender" position={[0, FRONT_Y + 0.2, FRONT_Z]}>
-        <mesh rotation={[0.12, 0, 0]} scale={[0.85, 0.2, 1.7]} castShadow>
-          <sphereGeometry args={[0.11, 20, 12]} />
+      <Part id="front-fender" position={[0, FRONT_Y + 0.22, FRONT_Z + 0.02]}>
+        <mesh rotation={[0.28, 0, 0]} scale={[0.78, 0.16, 1.85]} castShadow>
+          <sphereGeometry args={[0.11, 22, 14]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        </mesh>
+        <mesh position={[0, -0.02, -0.04]} rotation={[0.12, 0, 0]} scale={[0.7, 0.12, 1.2]}>
+          <sphereGeometry args={[0.1, 16, 10]} />
           <meshPhysicalMaterial {...bodyPaint(C.paint)} />
         </mesh>
       </Part>
@@ -1184,23 +1260,39 @@ export function Dominar() {
           <meshStandardMaterial {...paint(C.plastic)} />
         </mesh>
       </Part>
-      <Part id="grab-rail" position={[0, 0.82, -0.6]}>
-        <Tube from={[-0.12, 0, 0.08]} to={[-0.12, 0.02, -0.16]} r={0.01} color={C.frame} />
-        <Tube from={[0.12, 0, 0.08]} to={[0.12, 0.02, -0.16]} r={0.01} color={C.frame} />
-        <Tube from={[-0.12, 0.02, -0.16]} to={[0.12, 0.02, -0.16]} r={0.01} color={C.frame} />
+      <Part id="grab-rail" position={[0, 0.84, -0.62]}>
+        <Tube from={[-0.13, 0, 0.1]} to={[-0.13, 0.04, -0.14]} r={0.01} color="#2a3038" />
+        <Tube from={[0.13, 0, 0.1]} to={[0.13, 0.04, -0.14]} r={0.01} color="#2a3038" />
+        <Tube from={[-0.13, 0.04, -0.14]} to={[0.13, 0.04, -0.14]} r={0.01} color="#2a3038" />
+        <Tube from={[-0.13, 0.01, -0.04]} to={[0.13, 0.01, -0.04]} r={0.008} color="#2a3038" />
+        <Tube from={[-0.13, 0.01, 0.04]} to={[0.13, 0.01, 0.04]} r={0.008} color="#2a3038" />
       </Part>
-      <Part id="headlight-visor" position={[0, 0.8, 0.74]}>
+      <Part id="headlight-visor" position={[0, 0.86, 0.72]}>
         <Panel
           path={[
-            [-0.16, 0.02],
-            [0.16, 0.02],
-            [0.14, -0.04],
-            [-0.14, -0.04],
+            [-0.2, 0.04],
+            [-0.08, 0.08],
+            [0.08, 0.08],
+            [0.2, 0.04],
+            [0.18, -0.02],
+            [-0.18, -0.02],
           ]}
-          depth={0.07}
+          depth={0.09}
           color={C.paint}
-          rotation={[0.55, 0, 0]}
+          rotation={[0.62, 0, 0]}
         />
+        <mesh position={[0, -0.02, 0.04]} rotation={[0.55, 0, 0]}>
+          <boxGeometry args={[0.34, 0.018, 0.06]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
+        </mesh>
+        <mesh position={[-0.16, -0.06, 0.02]} rotation={[0.4, 0.15, 0.35]}>
+          <boxGeometry args={[0.08, 0.09, 0.03]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        </mesh>
+        <mesh position={[0.16, -0.06, 0.02]} rotation={[0.4, -0.15, -0.35]}>
+          <boxGeometry args={[0.08, 0.09, 0.03]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paint)} />
+        </mesh>
       </Part>
       <Part id="battery-cover" position={[0, 0.7, -0.28]}>
         <mesh>
@@ -1221,20 +1313,20 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="seat-rider" position={[0, 0.9, -0.14]}>
-        <mesh scale={[1.05, 0.22, 1.85]} castShadow>
+      <Part id="seat-rider" position={[0, 0.92, -0.12]}>
+        <mesh scale={[1.0, 0.16, 2.05]} castShadow>
           <sphereGeometry args={[0.135, 22, 14]} />
-          <meshStandardMaterial {...paint(C.seat, { roughness: 0.9, metalness: 0.03 })} />
+          <meshStandardMaterial {...paint(C.seat, { roughness: 0.92, metalness: 0.02 })} />
         </mesh>
-        <mesh position={[0, 0.01, 0.08]} scale={[0.85, 0.16, 0.7]}>
+        <mesh position={[0, 0.012, 0.04]} scale={[0.72, 0.1, 1.1]}>
           <sphereGeometry args={[0.12, 16, 10]} />
-          <meshStandardMaterial {...paint('#1a1a1a', { roughness: 0.92 })} />
+          <meshStandardMaterial {...paint('#1a1a1a', { roughness: 0.94 })} />
         </mesh>
       </Part>
-      <Part id="seat-pillion" position={[0, 0.88, -0.46]}>
-        <mesh scale={[0.92, 0.2, 1.15]} castShadow>
+      <Part id="seat-pillion" position={[0, 0.9, -0.44]}>
+        <mesh scale={[0.86, 0.14, 1.25]} castShadow>
           <sphereGeometry args={[0.125, 18, 12]} />
-          <meshStandardMaterial {...paint(C.seat, { roughness: 0.9, metalness: 0.03 })} />
+          <meshStandardMaterial {...paint(C.seat, { roughness: 0.92, metalness: 0.02 })} />
         </mesh>
       </Part>
 
@@ -1305,30 +1397,38 @@ export function Dominar() {
         </mesh>
       </Part>
 
-      <Part id="headlight" position={[0, 0.72, 0.78]}>
-        <mesh castShadow>
-          <boxGeometry args={[0.32, 0.14, 0.06]} />
-          <meshStandardMaterial {...paint('#0e1218', { metalness: 0.5, roughness: 0.28 })} />
+      <Part id="headlight" position={[0, 0.74, 0.76]}>
+        <mesh rotation={[0.18, 0, 0]} castShadow>
+          <boxGeometry args={[0.36, 0.16, 0.055]} />
+          <meshStandardMaterial {...paint('#0a0d12', { metalness: 0.55, roughness: 0.22 })} />
         </mesh>
-        <mesh position={[-0.07, 0.01, 0.032]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.048, 0.044, 0.022, 24]} />
-          <meshStandardMaterial {...paint('#1a222c', { metalness: 0.7, roughness: 0.18 })} />
+        <mesh position={[-0.075, 0.018, 0.03]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.052, 0.046, 0.028, 28]} />
+          <meshStandardMaterial {...paint('#1a222c', { metalness: 0.78, roughness: 0.14 })} />
         </mesh>
-        <mesh position={[0.07, 0.01, 0.032]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.048, 0.044, 0.022, 24]} />
-          <meshStandardMaterial {...paint('#1a222c', { metalness: 0.7, roughness: 0.18 })} />
+        <mesh position={[0.075, 0.018, 0.03]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.052, 0.046, 0.028, 28]} />
+          <meshStandardMaterial {...paint('#1a222c', { metalness: 0.78, roughness: 0.14 })} />
         </mesh>
-        <mesh position={[-0.07, 0.01, 0.044]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.038, 0.038, 0.012, 24]} />
-          <meshPhysicalMaterial color={C.led} roughness={0.08} metalness={0.05} transmission={0.35} transparent opacity={0.9} emissive={C.led} emissiveIntensity={0.55} />
+        <mesh position={[-0.075, 0.018, 0.046]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.04, 0.04, 0.012, 28]} />
+          <meshPhysicalMaterial color={C.led} roughness={0.06} metalness={0.04} transmission={0.4} transparent opacity={0.92} emissive={C.led} emissiveIntensity={0.7} />
         </mesh>
-        <mesh position={[0.07, 0.01, 0.044]} rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.038, 0.038, 0.012, 24]} />
-          <meshPhysicalMaterial color={C.led} roughness={0.08} metalness={0.05} transmission={0.35} transparent opacity={0.9} emissive={C.led} emissiveIntensity={0.55} />
+        <mesh position={[0.075, 0.018, 0.046]} rotation={[Math.PI / 2, 0, 0]}>
+          <cylinderGeometry args={[0.04, 0.04, 0.012, 28]} />
+          <meshPhysicalMaterial color={C.led} roughness={0.06} metalness={0.04} transmission={0.4} transparent opacity={0.92} emissive={C.led} emissiveIntensity={0.7} />
         </mesh>
-        <mesh position={[0, -0.048, 0.038]}>
-          <boxGeometry args={[0.24, 0.01, 0.008]} />
-          <meshStandardMaterial {...paint(C.led, { emissive: '#88aacc', emissiveIntensity: 0.55 })} />
+        <mesh position={[0, -0.055, 0.04]} rotation={[0.1, 0, 0]}>
+          <boxGeometry args={[0.3, 0.012, 0.01]} />
+          <meshStandardMaterial {...paint(C.led, { emissive: '#a8c8e8', emissiveIntensity: 0.75 })} />
+        </mesh>
+        <mesh position={[-0.17, -0.02, 0.02]} rotation={[0.1, 0.2, 0.15]}>
+          <boxGeometry args={[0.05, 0.05, 0.03]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
+        </mesh>
+        <mesh position={[0.17, -0.02, 0.02]} rotation={[0.1, -0.2, -0.15]}>
+          <boxGeometry args={[0.05, 0.05, 0.03]} />
+          <meshPhysicalMaterial {...bodyPaint(C.paintAccent)} />
         </mesh>
       </Part>
       <Part id="instrument-cluster" position={[0, 0.94, 0.58]}>
